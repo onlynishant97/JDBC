@@ -1,0 +1,43 @@
+Views:-
+
+Advantages of views:
+1. View the data without storing the data into the object.
+2. Restict the view of a table i.e. can hide some of columns in the tables.
+3. Join two or more tables and show it as one object to user.
+4. Restict the access of a table so that nobody can insert the rows into the table.
+Disadvatages:
+1. Can not use DML operations on this.
+2. When table is dropped view becomes inactive.. it depends on the table objects.
+3. It is an object, so it occupies space.
+
+Syntax of View:-
+create[or Replace] [Force/No Force] view viewname (alias..) as subquery [with check option(constraint constraint_name)] [with read only option(contraint contraint_name)]
+
+Create View:-
+create or replace view view1 as (select empno ,ename,sal from emp)
+
+Insert into View:-
+insert into view1 values(1,'nishant',25000)
+
+Viewing a View:-
+select * from view1
+
+Views are of two type i.e. Simple and Complex View.
+
+Creating View with Check Option:-
+create or replace view view3 as select empno,ename,deptno from emp where deptno=20 with Check Option constraint CC_D;
+
+View with Read Only:-
+create or replace view view5 as select empno,ename,deptno from emp with read only constraint ro;
+
+Aliasing of Column name in View:-
+create or replace view view6(id,name,aid) as select empno,ename,deptno from emp
+
+Renaming View:-
+rename oldview to newview
+
+Drop view:-
+drop view viewname;
+
+Join in view:-
+create or replace view view7 as(select e.empno,e.ename,d.dname,d.deptno from emp e join dept d on(e.deptno=d.deptno))
